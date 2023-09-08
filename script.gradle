@@ -1,0 +1,44 @@
+task first {
+    doLast {
+        print "first task"
+    }
+}
+task second {
+    doLast {
+        print "second task"
+    }
+}
+task third {
+    doLast {
+        print "third task"
+    }
+}
+task fourth(group: "maxim") {
+    doLast {
+        print "fourth task"
+    }
+}
+
+fourth.dependsOn first
+fourth.dependsOn second
+fourth.dependsOn third
+
+gradle.taskGraph.whenReady {
+    graph ->
+        println "--- Graph: "
+        graph.allTasks.each { it ->
+        println "${it.name}"
+        }
+}
+
+gradle.taskGraph.beforeTask { Task task ->
+    if (task.group == "maxim") {
+        println "beforeTask callBeck $task"
+    }
+}
+
+gradle.taskGraph.afterTask { Task task ->
+    if (task.name == "first") {
+        println "afterTask callBeck $task"
+    }
+}

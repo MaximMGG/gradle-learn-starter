@@ -1,0 +1,3 @@
+
+rootProject.name = 'gradle-learn-starter'
+include('app')
