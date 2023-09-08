@@ -4,6 +4,10 @@
 package gradle.learn.starter;
 
 public class App {
+
+    private String name;
+    private int age;
+
     public String getGreeting() {
         return "Hello World!";
     }

@@ -13,18 +13,22 @@ repositories {
 }
 
 configurations {
-    Configuration configurationImpl = getByName("implementation")
+    // Configuration configurationImpl = getByName("implementation")
 
-    maxim {
-        description = "maxim configration"
-    }
-    configurationImpl.extendsFrom(maxim)
+    // maxim {
+    //     description = "maxim configration"
+    // }
+    // configurationImpl.extendsFrom(maxim)
 }
 
 dependencies {
     // add('implementation', [group: "org.springframework", name: "spring-webmvc", version: '5.3.9'])
-    maxim "org.springframework:spring-webmvc:5.3.9"
-    // implementation "org.springframework:spring-webmvc:5.3.9"
+    // maxim "org.springframework:spring-webmvc:5.3.9"
+    implementation ("org.springframework:spring-webmvc:5.3.9") {
+        exclude(group: 'org.springframework', module: 'spring-aop')
+    }
+    compileOnly 'org.projectlombok:lombok:1.18.28'
+
 }
 
 sourceSets {
