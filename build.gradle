@@ -3,6 +3,20 @@ plugins {
     id 'java'
 }
 
+jar {
+    manifest {
+        attributes 'Main-Class': 'gradle.learn.starter.App'
+    }
+    duplicatesStrategy (DuplicatesStrategy.EXCLUDE)
+    from {
+        configurations.runtimeClasspath.files.collect{zipTree(it)}
+    }
+}
+
+// configurations.runtimeClasspath.files.each{it -> println it}
+// configurations.runtimeClasspath.files.each { it -> println it}
+
+
 apply from: 'script.gradle'
 
 // org.springframework
@@ -12,40 +26,39 @@ repositories {
     mavenCentral()
 }
 
-configurations {
-    // Configuration configurationImpl = getByName("implementation")
+// configurations {
+//     // Configuration configurationImpl = getByName("implementation")
 
-    // maxim {
-    //     description = "maxim configration"
-    // }
-    // configurationImpl.extendsFrom(maxim)
-    // all {
-    //     resolutionStrategy {
-    //         force("org.springframework:spring-aop:5.3.8")
-    //     }
-    // }
-}
+//     // maxim {
+//     //     description = "maxim configration"
+//     // }
+//     // configurationImpl.extendsFrom(maxim)
+//     // all {
+//     //     resolutionStrategy {
+//     //         force("org.springframework:spring-aop:5.3.8")
+//     //     }
+//     // }
+// }
 
 dependencies {
     // compileOnly platform('org.springframework.boot:spring-boot-dependencies:2.5.3')
     // add('implementation', [group: "org.springframework", name: "spring-webmvc", version: '5.3.9'])
     // maxim "org.springframework:spring-webmvc:5.3.9"
-    implementation ("org.springframework:spring-webmvc:5.3.9") {
-        // exclude(group: 'org.springframework', module: 'spring-aop')
-    }
+    implementation "org.springframework:spring-webmvc:5.3.9"
+
     compileOnly 'org.projectlombok:lombok:1.18.28'
 
 }
 
 sourceSets {
-    main {
-        java {
-            // srcDir("$buildDir")
-        }
-        resources {
-
-        }
-    }
+    // main {
+    //     java {
+    //         srcDirs = ['src/main/java']
+    //     }
+    //     resources {
+    //         srcDirs = ['src/main/resources']
+    //     }
+    // }
 
     test {
 

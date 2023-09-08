@@ -3,16 +3,19 @@
  */
 package gradle.learn.starter;
 
+import org.springframework.util.StringUtils;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public class App {
 
     private String name;
     private int age;
 
-    public String getGreeting() {
-        return "Hello World!";
-    }
-
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+       System.out.println(StringUtils.capitalize("hello world"));
     }
 }
